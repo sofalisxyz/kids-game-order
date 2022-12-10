@@ -10,8 +10,6 @@ const background = (props: IItemWrapperProps) =>
       center / contain no-repeat;
     width: 100%;
     height: 100%;
-    max-width: 131px;
-    max-height: 131px;
     display: flex;
     align-items: center;
     justify-content: center;

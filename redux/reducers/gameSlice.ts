@@ -10,7 +10,7 @@ import { rusAlphabet } from '../../constants/abc';
 const initialState: IGameState = {
   loading: false,
   itemQuantity: 2,
-  itemValues: 'A',
+  itemValues: 'А',
   sort: 'asc',
   theme: 1,
   iconsThemeCount: 3,

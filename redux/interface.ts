@@ -5,15 +5,13 @@ export interface IGameState {
   sort: 'asc' | 'desc';
   theme: number;
   iconsThemeCount: number;
-  items: [] | Items;
+  items: [] | IItem[];
   isWin: boolean;
 }
 
 export interface IItem {
-  id: number;
-  value: number;
-  iconStyle: number;
+  readonly id: number;
+  readonly value: number | string;
+  readonly iconStyle: number;
   isRevealed: boolean;
 }
-
-export type Items = IItem[];

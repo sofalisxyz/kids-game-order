@@ -2,9 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { ISortProps } from './interface';
 
-type FixMe = any;
-
-const Wrapper: any = styled.div`
+const Wrapper = styled.div<ISortProps>`
   width: 360px;
   height: 69px;
 

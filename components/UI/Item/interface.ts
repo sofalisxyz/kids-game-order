@@ -4,7 +4,5 @@ export interface IItemWrapperProps {
 }
 
 export interface IItemProps extends IItemWrapperProps {
-  value: number | any;
-  // required
-  index: number;
+  value: number | string;
 }

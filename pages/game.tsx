@@ -20,7 +20,7 @@ const Game = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let i = useAppSelector((state) => state.game.items.length);
+  let i = useAppSelector((state) => state.game.items.length) - 1;
 
   const onDragEnd: OnDragEndResponder = (e) => {
     if (e.draggableId == e.destination?.droppableId) {

@@ -36,6 +36,16 @@ const StatusBarWrapper = styled.div`
   justify-content: center;
 `;
 
+const ItemWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 131px;
+  max-height: 131px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const StatusBar = () => {
   const theme = useAppSelector((state) => state.game.theme);
   const items = useAppSelector((state) => state.game.items);
@@ -46,26 +56,24 @@ const StatusBar = () => {
       <Sort sort={sort} />
 
       <StatusBarWrapper theme={theme}>
-        {items.map((item: IItem, index: number) => {
+        {items.map((item: IItem) => {
           return (
-            <Droppable key={item.id} droppableId={`${item.id}`}>
+            <Droppable key={`barItem_${item.id}`} droppableId={`${item.id}`}>
               {(provided) => (
-                <div
-                  className='test'
+                <ItemWrapper
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {index == 0 || item.isRevealed ? (
+                  {item.isRevealed ? (
                     <Item
                       value={item.value}
-                      index={item.id}
                       theme={theme}
                       iconStyle={item.iconStyle}
                     />
                   ) : (
                     <EmptyItem />
                   )}
-                </div>
+                </ItemWrapper>
               )}
             </Droppable>
           );

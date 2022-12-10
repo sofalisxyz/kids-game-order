@@ -10,6 +10,7 @@ import {
   Droppable,
   OnDragEndResponder,
 } from 'react-beautiful-dnd';
+import WinModal from '../components/WinModal';
 
 const Game = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const Game = () => {
   }, []);
 
   let i = useAppSelector((state) => state.game.items.length) - 1;
+  const win = useAppSelector((state) => state.game.isWin);
 
   const onDragEnd: OnDragEndResponder = (e) => {
     if (e.draggableId == e.destination?.droppableId) {
@@ -39,6 +41,7 @@ const Game = () => {
         <Head>
           <title>Игра - Тренажер &#34;Порядок&#34;</title>
         </Head>
+        {win ? <WinModal /> : null}
         <Droppable droppableId='itemsToDrag'>
           {(provided) => (
             <div

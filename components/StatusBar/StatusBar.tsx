@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   height: 100%;
   max-height: 300px;
   position: absolute;
-  bottom: 22px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -51,12 +51,14 @@ const StatusBar = () => {
   const items = useAppSelector((state) => state.game.items);
   const sort = useAppSelector((state) => state.game.sort);
 
+  const sortedItems = sort === 'desc' ? [...items].reverse() : items;
+
   return (
     <Wrapper>
       <Sort sort={sort} />
 
       <StatusBarWrapper theme={theme}>
-        {items.map((item: IItem) => {
+        {sortedItems.map((item: IItem) => {
           return (
             <Droppable key={`barItem_${item.id}`} droppableId={`${item.id}`}>
               {(provided) => (

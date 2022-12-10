@@ -1,17 +1,7 @@
 import styled from '@emotion/styled';
 import { convertCyrillic } from '../../../utils/convert-cyrillic';
+import SectionWrapper from '../SectionWrapper';
 import { IRangeProps } from './interface';
-
-type FixMe = any;
-
-const Wrapper: FixMe = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: ${(props: IRangeProps) => props.bottomSpace}px;
-`;
 
 const Title = styled.div`
   font-size: 37px;
@@ -69,9 +59,9 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Range = ({ title, options, bottomSpace }: IRangeProps) => {
+const Range: React.FC<IRangeProps> = ({ title, options, bottomSpace }) => {
   return (
-    <Wrapper bottomSpace={bottomSpace}>
+    <SectionWrapper bottomSpace={bottomSpace}>
       <Title>{title}</Title>
       <RangeWrapper>
         {options.map((option, index) => {
@@ -91,7 +81,7 @@ const Range = ({ title, options, bottomSpace }: IRangeProps) => {
           );
         })}
       </RangeWrapper>
-    </Wrapper>
+    </SectionWrapper>
   );
 };
 

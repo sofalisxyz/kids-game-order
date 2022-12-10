@@ -26,7 +26,7 @@ const Inner = styled.main`
   border-radius: ${borderSize};
 `;
 
-const Wrapper = ({ children }: PropsWithChildren) => {
+const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <Border>
       <Inner>{children}</Inner>

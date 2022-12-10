@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import StatusBar from '../components/StatusBar/StatusBar';
 import GameWrapper from '../components/UI/GameWrapper';
 
 const Game = () => {
@@ -15,6 +16,8 @@ const Game = () => {
       <Head>
         <title>Игра - Тренажер &#34;Порядок&#34;</title>
       </Head>
+
+      <StatusBar theme={theme} />
     </GameWrapper>
   );
 };

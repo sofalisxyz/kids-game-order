@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { IStatusBarProps } from './interface';
 import EmptyItem from '../UI/EmptyItem';
-import { Item, Items } from '../../redux/interface';
+import { Item } from '../../redux/interface';
 import FilledItem from '../FilledItem/FilledItem';
+import { useAppSelector } from '../../hooks/redux';
+import { randomize } from '../../utils/randomize';
 
 const background = (props: IStatusBarProps) =>
   css`
@@ -26,15 +28,24 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const StatusBar: React.FC<IStatusBarProps> = ({ theme }) => {
-  const items = [23, 45, 65, 32, 56];
+const StatusBar = () => {
+  const theme = useAppSelector((state) => state.game.theme);
+  const items = useAppSelector((state) => state.game.items);
+  const iconThemeCount = useAppSelector((state) => state.game.iconsThemeCount);
 
   return (
     <Wrapper theme={theme}>
       {items &&
         items.map((item: Item, index: number) => {
+          const iconStyle = randomize(iconThemeCount);
+
           return (
-            <FilledItem value={item} theme={theme} iconStyle={1} key={index} />
+            <FilledItem
+              value={item}
+              theme={theme}
+              iconStyle={iconStyle}
+              key={index}
+            />
           );
         })}
     </Wrapper>

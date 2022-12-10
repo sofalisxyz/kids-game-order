@@ -2,22 +2,27 @@ import Head from 'next/head';
 import React from 'react';
 import StatusBar from '../components/StatusBar/StatusBar';
 import GameWrapper from '../components/UI/GameWrapper';
+import { useAppDispatch } from '../hooks/redux';
+import { gameLoaded } from '../redux/reducers/gameSlice';
 
 const Game = () => {
-  const [theme, setTheme] = React.useState(1);
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    setTheme(Math.ceil(Math.random() * 4));
+    dispatch(gameLoaded());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <GameWrapper theme={theme}>
+    <GameWrapper>
       <Head>
         <title>Игра - Тренажер &#34;Порядок&#34;</title>
       </Head>
 
-      <StatusBar theme={theme} />
+      {/* todo: Draggable items component */}
+
+      <StatusBar />
     </GameWrapper>
   );
 };

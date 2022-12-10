@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { randomize } from '../../utils/randomize';
 import { IFilledItemProps } from './interface';
+import { useAppSelector } from '../../hooks/redux';
 
 const background = (props: IFilledItemProps) =>
   css`
@@ -21,17 +21,16 @@ const background = (props: IFilledItemProps) =>
     -webkit-text-stroke-color: #242546;
   `;
 
-type FixMe = any;
-
-const Wrapper: FixMe = styled.div`
+const Wrapper = styled.div`
   ${background}
 `;
 
-const FilledItem: React.FC<IFilledItemProps> = ({ theme, value }) => {
-  const iconStyle = randomize(4);
+const FilledItem: React.FC<IFilledItemProps> = ({ value, iconStyle }) => {
+  const theme = useAppSelector((state) => state.game.theme);
 
   return (
-    <Wrapper theme={theme} iconStyle={iconStyle}>
+    // todo: find a way to avoid typescript prop error
+    <Wrapper theme={theme} iconStyle={iconStyle} value={0}>
       {value}
     </Wrapper>
   );

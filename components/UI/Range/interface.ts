@@ -1,7 +1,7 @@
 export interface IRangeProps {
   title: string;
   options: Options;
-  action: any;
+  action: React.ChangeEventHandler<HTMLInputElement>;
   bottomSpace: string;
 }
 

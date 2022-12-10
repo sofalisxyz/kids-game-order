@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import React from 'react';
+import { useAppDispatch } from '../../hooks/redux';
+import { startGame } from '../../redux/reducers/gameSlice';
 import Button from '../UI/Button';
 
 const PlayButton = styled(Button)`
@@ -17,8 +19,14 @@ const PlayButton = styled(Button)`
 `;
 
 const Play = () => {
+  const dispatch = useAppDispatch();
+
+  const handleStartGame = () => {
+    dispatch(startGame());
+  };
+
   return (
-    <PlayButton as={Link} href='/game'>
+    <PlayButton as={Link} href='/game' onClick={handleStartGame}>
       Играть
     </PlayButton>
   );

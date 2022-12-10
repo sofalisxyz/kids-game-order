@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setSort } from '../../redux/reducers/gameSlice';
 import Button from '../UI/Button';
 
 const Wrapper = styled.div`
@@ -9,11 +11,11 @@ const Wrapper = styled.div`
 `;
 
 const Sort = () => {
-  const [sort, setSort] = React.useState('asc');
+  const dispatch = useAppDispatch();
+  const sort = useAppSelector((state) => state.game.sort);
 
-  const handleSort = (sortType: 'asc' | 'desc') => {
-    setSort(sortType);
-    // todo: redux action
+  const handleSort = (type: 'asc' | 'desc') => {
+    dispatch(setSort(type));
   };
 
   return (

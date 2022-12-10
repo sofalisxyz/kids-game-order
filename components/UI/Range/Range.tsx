@@ -59,7 +59,12 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Range: React.FC<IRangeProps> = ({ title, options, bottomSpace }) => {
+const Range: React.FC<IRangeProps> = ({
+  title,
+  options,
+  action,
+  bottomSpace,
+}) => {
   return (
     <SectionWrapper bottomSpace={bottomSpace}>
       <Title>{title}</Title>
@@ -68,6 +73,7 @@ const Range: React.FC<IRangeProps> = ({ title, options, bottomSpace }) => {
           return (
             <InputWrapper key={index}>
               <input
+                onChange={action}
                 defaultChecked={index === 0}
                 type='radio'
                 id={convertCyrillic(title) + option.toString()}

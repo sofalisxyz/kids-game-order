@@ -1,7 +1,7 @@
 export interface IGameState {
   loading: boolean;
   itemQuantity: number;
-  itemValues: string | number;
+  itemValues: string;
   sort: 'asc' | 'desc';
   theme: number;
   iconsThemeCount: number;

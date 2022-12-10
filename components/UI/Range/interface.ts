@@ -1,6 +1,7 @@
 export interface IRangeProps {
   title: string;
   options: Options;
+  action: any;
   bottomSpace: string;
 }
 

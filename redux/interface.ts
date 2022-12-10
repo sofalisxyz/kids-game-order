@@ -9,6 +9,6 @@ export interface IGameState {
   isWin: boolean;
 }
 
-export type Item = number;
+export type Item = number | string;
 
 export type Items = Item[];

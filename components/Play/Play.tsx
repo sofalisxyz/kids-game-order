@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import React from 'react';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { startGame } from '../../redux/reducers/gameSlice';
 import Button from '../UI/Button';
 
@@ -20,9 +20,12 @@ const PlayButton = styled(Button)`
 
 const Play = () => {
   const dispatch = useAppDispatch();
+  const itemQuantity = useAppSelector((state) => state.game.itemQuantity);
+  const itemValues = useAppSelector((state) => state.game.itemValues);
+  const sort = useAppSelector((state) => state.game.sort);
 
   const handleStartGame = () => {
-    dispatch(startGame());
+    dispatch(startGame({ itemQuantity, itemValues, sort }));
   };
 
   return (

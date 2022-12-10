@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IGameState } from '../interface';
-import { getArrWithRandomLetters, getArrWithRandomValues, randomize } from '../../utils/randomize';
+import {
+  getItemsWithRandomLetters,
+  getItemsWithRandomNumbers,
+  randomize,
+} from '../../utils/randomize';
 import { rusAlphabet } from '../../constants/abc';
 
 const initialState: IGameState = {
@@ -35,36 +39,64 @@ const gameSlice = createSlice({
       state.theme == 1
         ? (state.iconsThemeCount = 4)
         : state.theme == 2
-          ? (state.iconsThemeCount = 3)
-          : state.theme == 3
-            ? (state.iconsThemeCount = 5)
-            : state.theme == 4
-              ? (state.iconsThemeCount = 5)
-              : (state.iconsThemeCount = 3);
+        ? (state.iconsThemeCount = 3)
+        : state.theme == 3
+        ? (state.iconsThemeCount = 5)
+        : state.theme == 4
+        ? (state.iconsThemeCount = 5)
+        : (state.iconsThemeCount = 3);
 
-
-      for (let i = 0; i < action.payload.itemQuantity; i++) {
-        action.payload.itemValues == "A"
-          ? (state.items = getArrWithRandomLetters(rusAlphabet, action.payload.itemQuantity))
-          : action.payload.itemValues == "9"
-            ? (state.items = getArrWithRandomValues(1, 9, action.payload.itemQuantity))
-            : action.payload.itemValues == "19"
-              ? (state.items = getArrWithRandomValues(10, 19, action.payload.itemQuantity))
-              : action.payload.itemValues == "50"
-                ? (state.items = getArrWithRandomValues(20, 50, action.payload.itemQuantity))
-                : action.payload.itemValues == "99"
-                  ? (state.items = getArrWithRandomValues(50, 99, action.payload.itemQuantity))
-                  : action.payload.itemValues == "999"
-                    ? (state.items = getArrWithRandomValues(100, 999, action.payload.itemQuantity))
-                    : (state.items = [] // todo optional: error boundary
-                    );
-      }
+      action.payload.itemValues == 'А'
+        ? (state.items = getItemsWithRandomLetters(
+            rusAlphabet,
+            state.iconsThemeCount,
+            action.payload.itemQuantity
+          ))
+        : action.payload.itemValues == '9'
+        ? (state.items = getItemsWithRandomNumbers(
+            1,
+            9,
+            state.iconsThemeCount,
+            action.payload.itemQuantity
+          ))
+        : action.payload.itemValues == '19'
+        ? (state.items = getItemsWithRandomNumbers(
+            10,
+            19,
+            state.iconsThemeCount,
+            action.payload.itemQuantity
+          ))
+        : action.payload.itemValues == '50'
+        ? (state.items = getItemsWithRandomNumbers(
+            20,
+            50,
+            state.iconsThemeCount,
+            action.payload.itemQuantity
+          ))
+        : action.payload.itemValues == '99'
+        ? (state.items = getItemsWithRandomNumbers(
+            50,
+            99,
+            state.iconsThemeCount,
+            action.payload.itemQuantity
+          ))
+        : action.payload.itemValues == '999'
+        ? (state.items = getItemsWithRandomNumbers(
+            100,
+            999,
+            state.iconsThemeCount,
+            action.payload.itemQuantity
+          ))
+        : (state.items = []); // todo optional: error boundary
     },
     gameLoaded(state) {
       state.loading = false;
     },
+    revealItem(state, action) {
+      state.items[action.payload - 1].isRevealed = true;
+    },
     winGame(state) {
-      state.items.length == state.itemQuantity ? (state.isWin = true) : null;
+      state.isWin = true;
     },
   },
 });
@@ -75,6 +107,7 @@ export const {
   setSort,
   startGame,
   gameLoaded,
+  revealItem,
   winGame,
 } = gameSlice.actions;
 

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-const GameWrapper: React.FC<PropsWithChildren> = ({ children }) => {
+const GameWrapper = ({ children }: PropsWithChildren) => {
   const theme = useAppSelector((state) => state.game.theme);
 
   return <Wrapper theme={theme}>{children}</Wrapper>;

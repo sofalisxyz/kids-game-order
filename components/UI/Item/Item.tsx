@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { IFilledItemProps, IFilledItemWrapperProps } from './interface';
-import { useAppSelector } from '../../hooks/redux';
+import { IItemProps, IItemWrapperProps } from './interface';
+import { useAppSelector } from '../../../hooks/redux';
 
-const background = (props: IFilledItemWrapperProps) =>
+const background = (props: IItemWrapperProps) =>
   css`
     background: url('/assets/img/theme/${props.theme}/item-icon-${props.iconStyle}.svg')
       center / contain no-repeat;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   ${background}
 `;
 
-const FilledItem: React.FC<IFilledItemProps> = ({ value, iconStyle }) => {
+const Item: React.FC<IItemProps> = ({ value, iconStyle }) => {
   const theme = useAppSelector((state) => state.game.theme);
 
   return (
@@ -35,4 +35,4 @@ const FilledItem: React.FC<IFilledItemProps> = ({ value, iconStyle }) => {
   );
 };
 
-export default FilledItem;
+export default Item;

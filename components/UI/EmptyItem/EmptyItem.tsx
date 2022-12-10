@@ -5,10 +5,10 @@ const Item = styled.div`
   height: 131px;
   margin: 0 2px;
 
-  &:first-child {
+  &:first-of-type {
     margin-left: 0;
   }
-  &:last-child {
+  &:last-of-type {
     margin-right: 0;
   }
 `;
@@ -28,7 +28,7 @@ const EmptyItem = () => {
           cy='66.1406'
           r='65.5'
           fill='black'
-          fill-opacity='0.06'
+          fillOpacity='0.06'
         />
       </g>
       <defs>
@@ -39,9 +39,9 @@ const EmptyItem = () => {
           width='131'
           height='135'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feBlend
             mode='normal'
             in='SourceGraphic'

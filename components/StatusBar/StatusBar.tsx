@@ -2,11 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { IStatusBarProps } from './interface';
-import EmptyItem from '../UI/EmptyItem';
-import { Item } from '../../redux/interface';
-import FilledItem from '../FilledItem/FilledItem';
 import { useAppSelector } from '../../hooks/redux';
-import { randomize } from '../../utils/randomize';
+import Sort from '../UI/Sort';
+import Item from '../UI/Item';
+import { Droppable } from 'react-beautiful-dnd';
+import { IItem } from '../../redux/interface';
+import EmptyItem from '../UI/EmptyItem';
 
 const background = (props: IStatusBarProps) =>
   css`
@@ -15,14 +16,21 @@ const background = (props: IStatusBarProps) =>
   `;
 
 const Wrapper = styled.div`
-  ${background};
   width: 100%;
+  max-width: 890px;
   height: 100%;
-  max-height: 231px;
+  max-height: 300px;
   position: absolute;
   bottom: 22px;
   left: 50%;
   transform: translateX(-50%);
+`;
+
+const StatusBarWrapper = styled.div`
+  ${background};
+  width: 100%;
+  height: 100%;
+  max-height: 231px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,23 +39,38 @@ const Wrapper = styled.div`
 const StatusBar = () => {
   const theme = useAppSelector((state) => state.game.theme);
   const items = useAppSelector((state) => state.game.items);
-  const iconThemeCount = useAppSelector((state) => state.game.iconsThemeCount);
+  const sort = useAppSelector((state) => state.game.sort);
 
   return (
-    <Wrapper theme={theme}>
-      {items &&
-        items.map((item: Item, index: number) => {
-          const iconStyle = randomize(iconThemeCount);
+    <Wrapper>
+      <Sort sort={sort} />
 
+      <StatusBarWrapper theme={theme}>
+        {items.map((item: IItem, index: number) => {
           return (
-            <FilledItem
-              value={item}
-              theme={theme}
-              iconStyle={iconStyle}
-              key={index}
-            />
+            <Droppable key={item.id} droppableId={`${item.id}`}>
+              {(provided) => (
+                <div
+                  className='test'
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {index == 0 || item.isRevealed ? (
+                    <Item
+                      value={item.value}
+                      index={item.id}
+                      theme={theme}
+                      iconStyle={item.iconStyle}
+                    />
+                  ) : (
+                    <EmptyItem />
+                  )}
+                </div>
+              )}
+            </Droppable>
           );
         })}
+      </StatusBarWrapper>
     </Wrapper>
   );
 };

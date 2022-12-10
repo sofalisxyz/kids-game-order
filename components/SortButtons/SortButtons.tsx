@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Sort = () => {
+const SortButtons = () => {
   const dispatch = useAppDispatch();
   const sort = useAppSelector((state) => state.game.sort);
 
@@ -30,4 +30,4 @@ const Sort = () => {
   );
 };
 
-export default Sort;
+export default SortButtons;

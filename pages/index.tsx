@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import AppWrapper from '../components/UI/AppWrapper';
 import Wrapper from '../components/UI/Wrapper';
-import Sort from '../components/Sort';
+import SortButtons from '../components/SortButtons';
 import Play from '../components/Play';
 import ItemQuantityRange from '../components/ItemQuantityRange';
 import ValuesRange from '../components/ValuesRange';
@@ -17,7 +17,7 @@ const Home = () => {
       <Wrapper>
         <ItemQuantityRange />
         <ValuesRange />
-        <Sort />
+        <SortButtons />
         <Play />
       </Wrapper>
     </AppWrapper>

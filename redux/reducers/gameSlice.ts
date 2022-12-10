@@ -8,8 +8,8 @@ const initialState: IGameState = {
   itemValues: 'A',
   sort: 'asc',
   theme: 1,
-  iconsThemeCount: 1,
-  items: [],
+  iconsThemeCount: 3,
+  items: [23, 45, 67, 53, 85, 54],
   isWin: false,
 };
 

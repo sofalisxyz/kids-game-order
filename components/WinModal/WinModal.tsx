@@ -4,6 +4,8 @@ import Modal from '../UI/Modal';
 import Image from 'next/image';
 import Button from '../UI/Button';
 import Link from 'next/link';
+import { useAppDispatch } from '../../hooks/redux';
+import { startOver } from '../../redux/reducers/gameSlice';
 
 const ModalText = styled.div`
   margin-top: 22px;
@@ -12,7 +14,7 @@ const ModalText = styled.div`
   color: #5f40a1;
 `;
 
-const ReplayButton = styled(Button)`
+const StartOverButton = styled(Button)`
   margin-top: auto;
   background: #2bd600;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
@@ -27,6 +29,12 @@ const ReplayButton = styled(Button)`
 `;
 
 const WinModal = () => {
+  const dispatch = useAppDispatch();
+
+  const handleStartOver = () => {
+    dispatch(startOver());
+  };
+
   return (
     <Modal>
       <Image
@@ -36,9 +44,9 @@ const WinModal = () => {
         height={'165'}
       />
       <ModalText>Молодец! Ты успешно справился с заданием!</ModalText>
-      <ReplayButton as={Link} href='/'>
+      <StartOverButton as={Link} href='/' onClick={handleStartOver}>
         Заново
-      </ReplayButton>
+      </StartOverButton>
     </Modal>
   );
 };

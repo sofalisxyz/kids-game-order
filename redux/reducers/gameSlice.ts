@@ -49,6 +49,7 @@ const gameSlice = createSlice({
       action.payload.itemValues == 'А'
         ? (state.items = getItemsWithRandomLetters(
             rusAlphabet,
+            state.sort,
             state.iconsThemeCount,
             action.payload.itemQuantity
           ))
@@ -56,6 +57,7 @@ const gameSlice = createSlice({
         ? (state.items = getItemsWithRandomNumbers(
             1,
             9,
+            state.sort,
             state.iconsThemeCount,
             action.payload.itemQuantity
           ))
@@ -63,6 +65,7 @@ const gameSlice = createSlice({
         ? (state.items = getItemsWithRandomNumbers(
             10,
             19,
+            state.sort,
             state.iconsThemeCount,
             action.payload.itemQuantity
           ))
@@ -70,6 +73,7 @@ const gameSlice = createSlice({
         ? (state.items = getItemsWithRandomNumbers(
             20,
             50,
+            state.sort,
             state.iconsThemeCount,
             action.payload.itemQuantity
           ))
@@ -77,6 +81,7 @@ const gameSlice = createSlice({
         ? (state.items = getItemsWithRandomNumbers(
             50,
             99,
+            state.sort,
             state.iconsThemeCount,
             action.payload.itemQuantity
           ))
@@ -84,6 +89,7 @@ const gameSlice = createSlice({
         ? (state.items = getItemsWithRandomNumbers(
             100,
             999,
+            state.sort,
             state.iconsThemeCount,
             action.payload.itemQuantity
           ))
@@ -98,6 +104,10 @@ const gameSlice = createSlice({
     winGame(state) {
       state.isWin = true;
     },
+    startOver(state) {
+      state.items = [];
+      state.isWin = false;
+    },
   },
 });
 
@@ -109,6 +119,7 @@ export const {
   gameLoaded,
   revealItem,
   winGame,
+  startOver,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

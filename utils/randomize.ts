@@ -48,13 +48,16 @@ const getArrWithRandomNumbers = (min: number, max: number, length: number) => {
 
 export const getItemsWithRandomLetters = (
   str: string,
+  sort: 'asc' | 'desc',
   iconsThemeCount: number,
   length: number
 ) => {
   const items: IItem[] = [];
   const letters = getArrWithRandomLetters(str, length).sort(
     (a: string, b: string) =>
-      a.localeCompare(b, 'ru', { ignorePunctuation: true })
+      sort === 'asc'
+        ? a.localeCompare(b, 'ru', { ignorePunctuation: true })
+        : b.localeCompare(a, 'ru', { ignorePunctuation: true })
   );
   let id = 1;
 
@@ -79,12 +82,13 @@ export const getItemsWithRandomLetters = (
 export const getItemsWithRandomNumbers = (
   min: number,
   max: number,
+  sort: 'asc' | 'desc',
   iconsThemeCount: number,
   length: number
 ) => {
   const items: IItem[] = [];
   const numbers: number[] = getArrWithRandomNumbers(min, max, length).sort(
-    (a: number, b: number) => a - b
+    (a: number, b: number) => (sort === 'asc' ? a - b : b - a)
   );
   let id = 1;
 

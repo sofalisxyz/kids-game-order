@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { IFilledItemProps } from './interface';
+import { IFilledItemProps, IFilledItemWrapperProps } from './interface';
 import { useAppSelector } from '../../hooks/redux';
 
-const background = (props: IFilledItemProps) =>
+const background = (props: IFilledItemWrapperProps) =>
   css`
     background: url('/assets/img/theme/${props.theme}/item-icon-${props.iconStyle}.svg')
       center / contain no-repeat;
@@ -29,8 +29,7 @@ const FilledItem: React.FC<IFilledItemProps> = ({ value, iconStyle }) => {
   const theme = useAppSelector((state) => state.game.theme);
 
   return (
-    // todo: find a way to avoid typescript prop error
-    <Wrapper theme={theme} iconStyle={iconStyle} value={0}>
+    <Wrapper theme={theme} iconStyle={iconStyle}>
       {value}
     </Wrapper>
   );

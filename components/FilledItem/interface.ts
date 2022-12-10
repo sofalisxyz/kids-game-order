@@ -1,5 +1,8 @@
-export interface IFilledItemProps {
+export interface IFilledItemWrapperProps {
   theme: number;
-  value: number;
   iconStyle: number;
+}
+
+export interface IFilledItemProps extends IFilledItemWrapperProps {
+  value: number;
 }

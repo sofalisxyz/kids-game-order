@@ -1,17 +1,13 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import { css } from '@emotion/react';
 
 import AppWrapper from '../components/UI/AppWrapper';
 import Wrapper from '../components/UI/Wrapper';
-import Range from '../components/UI/Range';
 import Sort from '../components/Sort';
 import Play from '../components/Play';
+import ItemQuantityRange from '../components/ItemQuantityRange';
+import ValuesRange from '../components/ValuesRange';
 
 const Home = () => {
-  const itemQuantityOptions = [2, 3, 4, 5];
-  const valuesOptions = ['А', 9, 19, 50, 99, 999];
-
   return (
     <AppWrapper>
       <Head>
@@ -19,8 +15,8 @@ const Home = () => {
       </Head>
 
       <Wrapper>
-        <Range title='Кол-во предметов' options={itemQuantityOptions} />
-        <Range title='Значения' options={valuesOptions} />
+        <ItemQuantityRange />
+        <ValuesRange />
         <Sort />
         <Play />
       </Wrapper>

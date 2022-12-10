@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 import React from 'react';
 import Button from '../UI/Button';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const Sort = () => {
   const [sort, setSort] = React.useState('asc');
@@ -14,10 +18,10 @@ const Sort = () => {
 
   return (
     <Wrapper>
-      <Button size='small' onClick={() => handleSort('asc')}>
+      <Button isActive={sort == 'asc'} onClick={() => handleSort('asc')}>
         По возрастанию
       </Button>
-      <Button size='small' onClick={() => handleSort('desc')}>
+      <Button isActive={sort == 'desc'} onClick={() => handleSort('desc')}>
         По убыванию
       </Button>
     </Wrapper>

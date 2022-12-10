@@ -22,11 +22,11 @@ const Inner = styled.main`
   width: 100%;
   height: 100%;
   background: #fff;
-  padding: 57px 79px;
+  padding: 42px 63px 32px;
   border-radius: ${borderSize};
 `;
 
-const Wrapper = ({ children }: any) => {
+const Wrapper = ({ children }: PropsWithChildren) => {
   return (
     <Border>
       <Inner>{children}</Inner>
